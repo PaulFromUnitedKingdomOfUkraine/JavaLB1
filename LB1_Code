@@ -1,0 +1,259 @@
+package lab;
+
+import java.util.Scanner;
+
+public class LB1 
+{
+	public static void main(String[] str)
+	{
+		int m = 0;
+		do 
+		{
+			Scanner in = new Scanner(System.in);
+			System.out.println("[1]Switch");
+			System.out.println("[2]Cycles");
+			System.out.println("[3]Arrays");
+			System.out.println("[4]Matrix");
+			System.out.println("[~]Exit");
+			try
+			{
+				m = in.nextInt();
+				switch(m) 
+				{
+					case 1: task1(); break;
+					case 2: task2(); break;
+					case 3: task3(); break;
+					case 4: task4(); break;
+					default:System.out.println("[!]Exit confirmed");
+				}
+			}
+			catch(Exception r) {System.out.println("[!]Input error");}
+		}
+		while(m!=5);
+	}
+	
+	
+	
+	public static void task1()
+	{
+		Scanner in = new Scanner(System.in);
+		try 
+		{
+			System.out.println("Enter month number");
+			int n = in.nextInt();
+			switch(n) 
+			{
+				case 1:System.out.print("It's - January\n\n");		break;
+				case 2:System.out.print("It's - February\n\n");		break;
+				case 3:System.out.print("It's - March\n\n");		break;
+				case 4:System.out.print("It's - April\n\n");		break;
+				case 5:System.out.print("It's - May\n\n");			break;
+				case 6:System.out.print("It's - June\n\n");			break;
+				case 7:System.out.print("It's - July\n\n");			break;
+				case 8:System.out.print("It's - August\n\n"); 		break;
+				case 9:System.out.print("It's - September\n\n");	break;
+				case 10:System.out.print("It's - October\n\n");		break;
+				case 11:System.out.print("It's - November\n\n"); 	break;
+				case 12:System.out.print("It's - December\n\n"); 	break;
+				default:System.out.println("[!]There's no such month!");
+				}
+			}
+			catch(Exception e) {System.out.println("Wrong enter "+e.toString());}
+		}
+	
+	
+	
+		public static void task2() 
+		{
+			double x1 = 0;
+			double x2 = 6,y=0;
+			double h = 0.5;
+			System.out.println("while\nx\t|\ty\n__________________");
+			while(x1<=x2) 
+			{
+				y=1/(1-Math.sqrt(x1));
+				System.out.printf("\n"+x1+"\t|\t" +"%.2f", y);
+				System.out.printf("\n");
+				x1 += h;
+			}
+			x1 = 0;
+			x2 = 6;
+			y=0;
+			h = 0.5;
+			System.out.println("do while\nx\t|\ty\n__________________");
+			do 
+			{
+				y=1/(1-Math.sqrt(x1));
+				System.out.printf("\n"+x1+"\t|\t" +"%.2f", y);
+				System.out.printf("\n");
+				x1 += h;
+			}
+			while(x1<=x2);	
+		}
+		
+		
+		
+		public static void task3()
+		{
+			Scanner in = new Scanner(System.in);
+			int j;
+			System.out.println("Enter the size of the array:");
+			int n = in.nextInt();
+			double [] mas = new double[n];
+			System.out.println("Choose how to fill the array:");
+			System.out.println("1.Enter the array with a keyboard.");
+			System.out.println("2.Randomly generate an array");
+			j = in.nextInt();
+			if(j == 1)
+			{
+				enter(mas,  n);
+				product (mas,  n);
+				sum(mas,  n);
+			}
+			else if(j == 2) 
+			{
+				rand(mas,  n);
+				print (mas,  n);
+				product (mas,  n);
+				sum(mas,  n);
+			}
+			else System.out.println("[!]There's no such option.");
+		}
+		public static void enter(double[]mas, int n) 
+		{
+			Scanner in = new Scanner(System.in);
+			for(int i = 0;i < n; i++) 
+			{
+				System.out.println("Enter " + (i + 1)+ " array value:");
+				mas[i] = in.nextInt();
+			}
+		}
+		public static void product (double[]mas, int n)
+		{
+			double prod = 1;
+			for(int i = 0;i < n; i++)
+			{
+				if(mas[i] < 0) prod *= mas[i];
+			}
+			System.out.printf("The product of negative array elements:"+" %.2f", prod);
+			System.out.println("\n");
+		}
+		public static void sum (double[]mas, int n)
+		{
+			double sum = 0, temp=mas[0];
+			int j = 0;
+			for(int i = 0;i < n; i++)
+			{
+				if (temp>mas[i])
+				{
+					temp=mas[i];
+					j = i;
+				}
+			}
+			for(int i = j+1;i <n; i++)
+			{
+				sum =sum+ mas[i];
+			}
+			System.out.printf("Amount of elements placed after element: " + "%.2f",sum);
+			System.out.println("\n");
+		}
+		public static void rand(double[]mas, int n)
+		{
+			for(int i = 0;i < n; i++)
+			{
+				mas[i] =  Math.random()*200 - 100;
+			}
+		}
+		public static void print(double[]mas, int n)
+		{
+			System.out.println("Generated array:");
+			for(int i = 0;i < n; i++) 
+			{
+				System.out.printf("%.2f", mas[i]);
+				System.out.println("\n");
+			}
+		}
+		
+		
+		
+		public static void task4()
+		{
+			Scanner in = new Scanner(System.in);
+			int n, m;
+			int j;
+			System.out.println("Enter the number of columns of the array:");
+			n = in.nextInt();
+			System.out.println("Enter the number of rows of the array:");
+			m = in.nextInt();
+			double ma[][]= new double[n][m];
+			System.out.println("Choose how to fill the array.");
+			System.out.println("1.Enter the array with a keyboard");
+			System.out.println("2.Randomly generate an array");
+			
+			j = in.nextInt();
+			if(j == 1)
+			{
+				entermas(ma ,n,m);
+				print2 (ma ,n,m);
+				serdarefm(ma ,n,m);
+			}
+			else if(j == 2)
+			{
+				rand2 (ma ,n,m);
+				print2 (ma ,n,m);
+				serdarefm(ma ,n,m);
+			}
+			else System.out.println("[!]This option is missing.");
+		}
+		public static void entermas(double[][] mas,int n, int m )
+		{
+			Scanner in = new Scanner(System.in);
+			for(int i = 0;i < m; i++) 
+			{
+				for(int j = 0;j < n; j++)
+				{
+					System.out.println("Enter the value of the array " + j +" "+ i);
+					mas[j][i] = in.nextInt();
+				}
+			}
+		}
+		public static void serdarefm(double[][] mas,int n, int m )
+		{
+			double sum = 0; 
+			for(int i = 0;i < m; i++) 
+			{
+				for(int j = 0;j < n; j++)
+				{
+					if( mas[j][i]<0)
+						{
+						sum =sum+ mas[j][i];
+						}
+				}
+			}
+			System.out.println("The sum of negative numbers of the matrix:");
+			System.out.printf("%.0f\n\n",sum);
+		}
+		public static void rand2(double[][]mas, int n, int m) 
+		{
+			for(int i = 0;i < m; i++)
+			{
+				for(int j = 0;j < n; j++)
+				{
+					mas[j][i] =  Math.random()*200 - 100;
+				}
+			}
+		}
+		public static void print2(double[][]mas, int n,int m)
+		{
+			System.out.println("Generated array:");
+			for(int i = 0;i < m; i++)
+			{
+				for(int j = 0;j < n; j++)
+				{
+					System.out.printf( "%.0f" ,mas[j][i]);
+					System.out.print(" ");
+				}
+				System.out.print("\n");
+			}
+		}
+}
